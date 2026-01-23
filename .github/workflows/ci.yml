@@ -1,0 +1,93 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore OpenCC.sln
+
+      - name: Verify formatting
+        run: dotnet format --verify-no-changes --no-restore OpenCC.sln
+
+      - name: Build
+        run: dotnet build OpenCC.sln -c Release --no-restore
+
+      - name: Test
+        run: dotnet test tests/OpenCC.Tests/OpenCC.Tests.csproj -c Release --no-build
+
+  release:
+    if: github.event_name == 'push' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    needs: build-test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Read version
+        id: version
+        shell: pwsh
+        run: |
+          $version = (Select-Xml -Path src/OpenCC/OpenCC.csproj -XPath "/Project/PropertyGroup/Version").Node.InnerText
+          if (-not $version) { throw "Version not found in OpenCC.csproj." }
+          "version=$version" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+
+      - name: Detect version change
+        id: change
+        shell: pwsh
+        run: |
+          $before = "${{ github.event.before }}"
+          $after = "${{ github.sha }}"
+          if ($before -eq "0000000000000000000000000000000000000000") {
+            "changed=true" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+            exit 0
+          }
+          git cat-file -e "$before^{commit}" 2>$null
+          if (-not $?) {
+            "changed=true" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+            exit 0
+          }
+          $diff = git diff $before $after -- src/OpenCC/OpenCC.csproj
+          if ($diff -match "<Version>") {
+            "changed=true" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          } else {
+            "changed=false" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          }
+
+      - name: Check tag exists
+        id: tag
+        shell: pwsh
+        run: |
+          git fetch --tags --force
+          $tag = "v${{ steps.version.outputs.version }}"
+          if (git show-ref --tags --verify --quiet "refs/tags/$tag") {
+            "exists=true" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          } else {
+            "exists=false" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          }
+
+      - name: Create release
+        if: steps.change.outputs.changed == 'true' && steps.tag.outputs.exists == 'false'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          name: v${{ steps.version.outputs.version }}
+          generate_release_notes: true
