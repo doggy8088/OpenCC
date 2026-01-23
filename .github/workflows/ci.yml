@@ -78,7 +78,8 @@ jobs:
         run: |
           git fetch --tags --force
           $tag = "v${{ steps.version.outputs.version }}"
-          if (git show-ref --tags --verify --quiet "refs/tags/$tag") {
+          $tagExists = git tag -l $tag
+          if ($tagExists) {
             "exists=true" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
           } else {
             "exists=false" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
