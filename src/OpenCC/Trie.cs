@@ -46,21 +46,154 @@ public sealed class Trie
             throw new ArgumentNullException(nameof(dict));
         }
 
-        var lines = dict.Split('|');
-        foreach (var line in lines)
+        var added = 0;
+        var entries = dict.Split(new[] { '|', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+        foreach (var entry in entries)
         {
+            var line = entry.Trim();
             if (line.Length == 0)
             {
                 continue;
             }
 
-            var parts = line.Split(' ');
-            if (parts.Length < 2)
+            if (line.StartsWith('#'))
             {
                 continue;
             }
 
-            AddWord(parts[0], parts[1]);
+            // Quote-pair dictionaries (e.g., opencc-js style arrays) should be handled by LoadQuotedPairs.
+            if (line.Contains('"') || line.Contains('[') || line.Contains(']'))
+            {
+                continue;
+            }
+
+            var splitIndex = IndexOfWhitespace(line);
+            if (splitIndex < 0)
+            {
+                continue;
+            }
+
+            var source = line.Substring(0, splitIndex);
+            var targetPart = line.Substring(splitIndex).Trim();
+            if (targetPart.Length == 0)
+            {
+                continue;
+            }
+
+            var inlineCommentIndex = targetPart.IndexOf('#');
+            if (inlineCommentIndex == 0)
+            {
+                continue;
+            }
+
+            if (inlineCommentIndex > 0)
+            {
+                targetPart = targetPart.Substring(0, inlineCommentIndex).TrimEnd();
+                if (targetPart.Length == 0)
+                {
+                    continue;
+                }
+            }
+
+            var target = TakeFirstToken(targetPart);
+            if (target.Length == 0)
+            {
+                continue;
+            }
+
+            AddWord(source, target);
+            added++;
+        }
+
+        if (added > 0)
+        {
+            return;
+        }
+
+        LoadQuotedPairs(dict);
+    }
+
+    private static int IndexOfWhitespace(string text)
+    {
+        for (var i = 0; i < text.Length; i++)
+        {
+            if (char.IsWhiteSpace(text[i]))
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    private static string TakeFirstToken(string text)
+    {
+        for (var i = 0; i < text.Length; i++)
+        {
+            if (char.IsWhiteSpace(text[i]))
+            {
+                return text.Substring(0, i);
+            }
+        }
+
+        return text;
+    }
+
+    private void LoadQuotedPairs(string dict)
+    {
+        if (dict.Length == 0)
+        {
+            return;
+        }
+
+        var tokens = new List<string>(256);
+
+        // Some embedded dicts are copied from opencc-js JSON arrays and trimmed,
+        // which can leave the first token without a leading quote.
+        var i = 0;
+        while (i < dict.Length && char.IsWhiteSpace(dict[i]))
+        {
+            i++;
+        }
+
+        if (i < dict.Length && dict[i] != '"')
+        {
+            var firstQuote = dict.IndexOf('"', i);
+            if (firstQuote > i)
+            {
+                var hadLeadingToken = false;
+                var leading = dict.Substring(i, firstQuote - i).Trim();
+                if (leading.Length > 0 && !leading.Contains('[') && !leading.Contains(']') && !leading.Contains(','))
+                {
+                    tokens.Add(leading);
+                    hadLeadingToken = true;
+                }
+
+                i = hadLeadingToken ? firstQuote + 1 : firstQuote;
+            }
+        }
+
+        while (i < dict.Length)
+        {
+            var startQuote = dict.IndexOf('"', i);
+            if (startQuote < 0)
+            {
+                break;
+            }
+
+            var endQuote = dict.IndexOf('"', startQuote + 1);
+            if (endQuote < 0)
+            {
+                break;
+            }
+
+            tokens.Add(dict.Substring(startQuote + 1, endQuote - startQuote - 1));
+            i = endQuote + 1;
+        }
+
+        for (var t = 0; t + 1 < tokens.Count; t += 2)
+        {
+            AddWord(tokens[t], tokens[t + 1]);
         }
     }
 

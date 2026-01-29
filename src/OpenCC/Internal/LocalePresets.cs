@@ -18,6 +18,7 @@ internal static class LocalePresets
             ["tw2"] = LocaleData.ToTw2,
             ["twp"] = LocaleData.ToTwp,
             ["jp"] = LocaleData.ToJp,
+            ["gov"] = LocaleData.ToGov,
         });
 
     internal static readonly LocalePreset T2cn = new(
@@ -28,6 +29,7 @@ internal static class LocalePresets
             ["tw2"] = LocaleData.FromTw2,
             ["twp"] = LocaleData.FromTwp,
             ["jp"] = LocaleData.FromJp,
+            ["gov"] = LocaleData.FromGov,
         },
         new Dictionary<string, DictGroup>(StringComparer.Ordinal)
         {

@@ -134,6 +134,7 @@ public static class OpenCC
             public static DictGroup Tw2 => LocaleData.FromTw2;
             public static DictGroup Twp => LocaleData.FromTwp;
             public static DictGroup Jp => LocaleData.FromJp;
+            public static DictGroup Gov => LocaleData.FromGov;
         }
 
         public static class To
@@ -144,6 +145,7 @@ public static class OpenCC
             public static DictGroup Tw2 => LocaleData.ToTw2;
             public static DictGroup Twp => LocaleData.ToTwp;
             public static DictGroup Jp => LocaleData.ToJp;
+            public static DictGroup Gov => LocaleData.ToGov;
         }
 
         public static IReadOnlyDictionary<string, DictGroup> FromMap => LocaleData.FromMap;

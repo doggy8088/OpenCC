@@ -22,10 +22,22 @@ public class PresetsTests
     }
 
     [Fact]
+    public void Cn2t_Locale_IncludesGovAsTo()
+    {
+        Assert.True(Cn2t.Locale.To.ContainsKey("gov"));
+    }
+
+    [Fact]
     public void T2cn_Locale_IsAvailable()
     {
         Assert.NotNull(T2cn.Locale);
         Assert.True(T2cn.Locale.To.ContainsKey("cn"));
+    }
+
+    [Fact]
+    public void T2cn_Locale_IncludesGovAsFrom()
+    {
+        Assert.True(T2cn.Locale.From.ContainsKey("gov"));
     }
 
     [Fact]

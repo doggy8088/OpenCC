@@ -23,6 +23,26 @@ var converter = OpenCC.Converter("cn", "tw2");
 Console.WriteLine(converter("汉语")); // 漢語
 ```
 
+## 中國內地《通用規範漢字表》(2013) 規範繁體 (gov)
+
+將繁體（可能混雜港/台/舊字形）正規化為《通用規範漢字表》(2013) 所對應的規範繁體字形：
+
+```csharp
+using OpenCC;
+
+var converter = OpenCC.Converter("t", "gov");
+Console.WriteLine(converter("啟用裡面淨化偽")); // 啓用裏面净化僞
+```
+
+從簡體轉為規範繁體：
+
+```csharp
+using OpenCC;
+
+var converter = OpenCC.Converter("cn", "gov");
+Console.WriteLine(converter("启绿")); // 啓緑
+```
+
 ## 自訂轉換器
 
 ### 使用陣列定義

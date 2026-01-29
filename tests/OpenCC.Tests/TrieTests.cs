@@ -1,3 +1,5 @@
+using OpenCC.Internal;
+
 using Xunit;
 
 namespace OpenCC.Tests;
@@ -89,5 +91,14 @@ public class TrieTests
         Assert.Equal("b", trie.Convert("a"));
         Assert.Equal("d", trie.Convert("c"));
         Assert.Equal("x", trie.Convert("x"));
+    }
+
+    [Fact]
+    public void LoadDict_String_ParsesQuotedPairDictionaries()
+    {
+        var trie = new Trie();
+        trie.LoadDict(DictData.TWPhrasesCustom);
+
+        Assert.Equal("一觸即發", trie.Convert("一觸即髮"));
     }
 }

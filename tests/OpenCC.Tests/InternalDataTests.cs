@@ -12,6 +12,8 @@ public class InternalDataTests
         Assert.False(string.IsNullOrEmpty(DictData.STCharacters));
         Assert.False(string.IsNullOrEmpty(DictData.TSCharacters));
         Assert.False(string.IsNullOrEmpty(DictData.TWVariants));
+        Assert.False(string.IsNullOrEmpty(DictData.TGCharacters));
+        Assert.False(string.IsNullOrEmpty(DictData.TGPhrases));
     }
 
     [Fact]
@@ -20,9 +22,11 @@ public class InternalDataTests
         Assert.True(LocaleData.FromMap.ContainsKey("cn"));
         Assert.True(LocaleData.FromMap.ContainsKey("hk"));
         Assert.True(LocaleData.FromMap.ContainsKey("tw2"));
+        Assert.True(LocaleData.FromMap.ContainsKey("gov"));
         Assert.True(LocaleData.ToMap.ContainsKey("cn"));
         Assert.True(LocaleData.ToMap.ContainsKey("tw"));
         Assert.True(LocaleData.ToMap.ContainsKey("tw2"));
+        Assert.True(LocaleData.ToMap.ContainsKey("gov"));
     }
 
     [Fact]

@@ -124,6 +124,8 @@ public class OpenCCTests
         Assert.NotNull(OpenCC.Locale.ToMap);
         Assert.True(OpenCC.Locale.FromMap.ContainsKey("cn"));
         Assert.True(OpenCC.Locale.ToMap.ContainsKey("cn"));
+        Assert.True(OpenCC.Locale.FromMap.ContainsKey("gov"));
+        Assert.True(OpenCC.Locale.ToMap.ContainsKey("gov"));
     }
 
     private static LocalePreset CreatePreset()

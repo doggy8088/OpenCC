@@ -10,6 +10,7 @@ internal static class LocaleData
     internal static readonly DictGroup FromTw2 = DictGroup.FromStrings(DictData.TWVariantsRev, DictData.TWPhrasesCustomRev);
     internal static readonly DictGroup FromTwp = DictGroup.FromStrings(DictData.TWVariantsRev, DictData.TWVariantsRevPhrases, DictData.TWPhrasesRev);
     internal static readonly DictGroup FromJp = DictGroup.FromStrings(DictData.JPVariantsRev, DictData.JPShinjitaiCharacters, DictData.JPShinjitaiPhrases);
+    internal static readonly DictGroup FromGov = new(Array.Empty<IDictLike>());
 
     internal static readonly DictGroup ToCn = DictGroup.FromStrings(DictData.TSCharacters, DictData.TSPhrases);
     internal static readonly DictGroup ToHk = DictGroup.FromStrings(DictData.HKVariants);
@@ -17,6 +18,7 @@ internal static class LocaleData
     internal static readonly DictGroup ToTw2 = DictGroup.FromStrings(DictData.TWVariants, DictData.TWPhrasesCustom);
     internal static readonly DictGroup ToTwp = DictGroup.FromStrings(DictData.TWVariants, DictData.TWPhrasesIT, DictData.TWPhrasesName, DictData.TWPhrasesOther);
     internal static readonly DictGroup ToJp = DictGroup.FromStrings(DictData.JPVariants);
+    internal static readonly DictGroup ToGov = DictGroup.FromStrings(DictData.TGCharacters, DictData.TGPhrases);
 
     internal static readonly IReadOnlyDictionary<string, DictGroup> FromMap =
         new Dictionary<string, DictGroup>(StringComparer.Ordinal)
@@ -27,6 +29,7 @@ internal static class LocaleData
             ["tw2"] = FromTw2,
             ["twp"] = FromTwp,
             ["jp"] = FromJp,
+            ["gov"] = FromGov,
         };
 
     internal static readonly IReadOnlyDictionary<string, DictGroup> ToMap =
@@ -38,5 +41,6 @@ internal static class LocaleData
             ["tw2"] = ToTw2,
             ["twp"] = ToTwp,
             ["jp"] = ToJp,
+            ["gov"] = ToGov,
         };
 }
