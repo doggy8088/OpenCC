@@ -1,4 +1,4 @@
-# OpenCC
+# OpenCC for C#
 
 純 C# 版本的 OpenCC 函式庫，無任何 NuGet 套件依賴。
 
