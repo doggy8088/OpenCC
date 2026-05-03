@@ -54,13 +54,18 @@ public sealed class Trie
                 continue;
             }
 
-            var parts = line.Split(' ');
-            if (parts.Length < 2)
+            var separatorIndex = line.IndexOf('\t');
+            if (separatorIndex < 0)
+            {
+                separatorIndex = line.IndexOf(' ');
+            }
+
+            if (separatorIndex < 0)
             {
                 continue;
             }
 
-            AddWord(parts[0], parts[1]);
+            AddWord(line[..separatorIndex], line[(separatorIndex + 1)..]);
         }
     }
 

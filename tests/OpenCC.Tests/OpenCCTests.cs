@@ -88,6 +88,15 @@ public class OpenCCTests
     }
 
     [Fact]
+    public void CustomConverter_String_SupportsTabSeparatedEntriesWithSpaces()
+    {
+        var converter = OpenCC.CustomConverter("a b|Web 平台庫\tWeb 平台函式庫");
+
+        Assert.Equal("b", converter("a"));
+        Assert.Equal("Web 平台函式庫", converter("Web 平台庫"));
+    }
+
+    [Fact]
     public void CustomConverter_Entries_Converts()
     {
         var converter = OpenCC.CustomConverter(new[] { new DictEntry("a", "b") });
@@ -124,6 +133,40 @@ public class OpenCCTests
         Assert.NotNull(OpenCC.Locale.ToMap);
         Assert.True(OpenCC.Locale.FromMap.ContainsKey("cn"));
         Assert.True(OpenCC.Locale.ToMap.ContainsKey("cn"));
+    }
+
+    [Theory]
+    [InlineData("视频", "影片")]
+    [InlineData("音频", "音訊")]
+    [InlineData("软件", "軟體")]
+    [InlineData("硬件", "硬體")]
+    [InlineData("程序", "程式")]
+    [InlineData("进程", "行程")]
+    [InlineData("进程间通信", "行程間通訊")]
+    [InlineData("线程", "執行緒")]
+    [InlineData("数据", "資料")]
+    [InlineData("数据库", "資料庫")]
+    [InlineData("网络", "網路")]
+    [InlineData("信息", "資訊")]
+    [InlineData("质量", "品質")]
+    [InlineData("用户", "使用者")]
+    [InlineData("默认", "預設")]
+    [InlineData("创建", "建立")]
+    [InlineData("实现", "實作")]
+    [InlineData("运行", "執行")]
+    [InlineData("发布", "發表")]
+    [InlineData("屏幕", "螢幕")]
+    [InlineData("界面", "介面")]
+    [InlineData("文档", "文件")]
+    [InlineData("操作系统", "作業系統")]
+    [InlineData("剑指", "針對")]
+    [InlineData("痛点", "要害")]
+    [InlineData("硬伤", "罩門")]
+    public void Converter_CnToTw2_ConvertsPreferredTaiwanTerms(string source, string expected)
+    {
+        var converter = OpenCC.Converter("cn", "tw2");
+
+        Assert.Equal(expected, converter(source));
     }
 
     private static LocalePreset CreatePreset()
