@@ -4,17 +4,20 @@ namespace OpenCC.Internal;
 
 internal static class LocaleData
 {
+    private const string TWPhrasesCustomAdditions = @"網絡服務	網路服務|應用程序網關	應用程式閘道|鏡像文件	映像檔|保存更改	儲存變更|儲存更改	儲存變更";
+    private const string TWPhrasesCustomAdditionsRev = @"網路服務	網絡服務|應用程式閘道	應用程序網關|映像檔	鏡像文件|儲存變更	儲存更改";
+
     internal static readonly DictGroup FromCn = DictGroup.FromStrings(DictData.STCharacters, DictData.STPhrases);
     internal static readonly DictGroup FromHk = DictGroup.FromStrings(DictData.HKVariantsRev, DictData.HKVariantsRevPhrases);
     internal static readonly DictGroup FromTw = DictGroup.FromStrings(DictData.TWVariantsRev, DictData.TWVariantsRevPhrases);
-    internal static readonly DictGroup FromTw2 = DictGroup.FromStrings(DictData.TWVariantsRev, DictData.TWPhrasesCustomRev);
+    internal static readonly DictGroup FromTw2 = DictGroup.FromStrings(DictData.TWVariantsRev, DictData.TWPhrasesCustomRev, TWPhrasesCustomAdditionsRev);
     internal static readonly DictGroup FromTwp = DictGroup.FromStrings(DictData.TWVariantsRev, DictData.TWVariantsRevPhrases, DictData.TWPhrasesRev);
     internal static readonly DictGroup FromJp = DictGroup.FromStrings(DictData.JPVariantsRev, DictData.JPShinjitaiCharacters, DictData.JPShinjitaiPhrases);
 
     internal static readonly DictGroup ToCn = DictGroup.FromStrings(DictData.TSCharacters, DictData.TSPhrases);
     internal static readonly DictGroup ToHk = DictGroup.FromStrings(DictData.HKVariants);
     internal static readonly DictGroup ToTw = DictGroup.FromStrings(DictData.TWVariants);
-    internal static readonly DictGroup ToTw2 = DictGroup.FromStrings(DictData.TWVariants, DictData.TWPhrasesCustom);
+    internal static readonly DictGroup ToTw2 = DictGroup.FromStrings(DictData.TWVariants, DictData.TWPhrasesCustom, TWPhrasesCustomAdditions);
     internal static readonly DictGroup ToTwp = DictGroup.FromStrings(DictData.TWVariants, DictData.TWPhrasesIT, DictData.TWPhrasesName, DictData.TWPhrasesOther);
     internal static readonly DictGroup ToJp = DictGroup.FromStrings(DictData.JPVariants);
 

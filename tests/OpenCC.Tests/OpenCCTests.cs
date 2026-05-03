@@ -136,6 +136,7 @@ public class OpenCCTests
     }
 
     [Theory]
+    [InlineData("电子邮件", "電子郵件")]
     [InlineData("视频", "影片")]
     [InlineData("音频", "音訊")]
     [InlineData("软件", "軟體")]
@@ -146,6 +147,10 @@ public class OpenCCTests
     [InlineData("线程", "執行緒")]
     [InlineData("数据", "資料")]
     [InlineData("数据库", "資料庫")]
+    [InlineData("网络服务", "網路服務")]
+    [InlineData("应用程序网关", "應用程式閘道")]
+    [InlineData("镜像文件", "映像檔")]
+    [InlineData("保存更改", "儲存變更")]
     [InlineData("网络", "網路")]
     [InlineData("信息", "資訊")]
     [InlineData("质量", "品質")]
@@ -163,6 +168,66 @@ public class OpenCCTests
     [InlineData("痛点", "要害")]
     [InlineData("硬伤", "罩門")]
     public void Converter_CnToTw2_ConvertsPreferredTaiwanTerms(string source, string expected)
+    {
+        var converter = OpenCC.Converter("cn", "tw2");
+
+        Assert.Equal(expected, converter(source));
+    }
+
+    [Theory]
+    [InlineData("数据结构数据库", "資料結構資料庫")]
+    [InlineData("响应式编程响应头", "回應式程式設計回應標頭")]
+    [InlineData("进程间通信和多线程", "行程間通訊和多執行緒")]
+    public void Converter_CnToTw2_PrefersLongestTaiwanTechTerms(string source, string expected)
+    {
+        var converter = OpenCC.Converter("cn", "tw2");
+
+        Assert.Equal(expected, converter(source));
+    }
+
+    [Theory]
+    [InlineData("Web 平台库", "Web 平台函式庫")]
+    [InlineData("for 循环和while 循环", "for 迴圈和while 迴圈")]
+    [InlineData("元数据 API", "Metadata API")]
+    [InlineData("类（ Class ）加载器", "類別（ Class ）載入器")]
+    public void Converter_CnToTw2_ConvertsEnglishMixedTaiwanTechTerms(string source, string expected)
+    {
+        var converter = OpenCC.Converter("cn", "tw2");
+
+        Assert.Equal(expected, converter(source));
+    }
+
+    [Theory]
+    [InlineData("“数据库”, “网络请求”", "“資料庫”, “網路請求”")]
+    [InlineData("项目设置：默认值", "專案設定：預設值")]
+    [InlineData("「类」", "「類別」")]
+    [InlineData("（视频）", "（影片）")]
+    public void Converter_CnToTw2_ConvertsAcrossPunctuationBoundaries(string source, string expected)
+    {
+        var converter = OpenCC.Converter("cn", "tw2");
+
+        Assert.Equal(expected, converter(source));
+    }
+
+    [Theory]
+    [InlineData("软件发布", "軟體發表")]
+    [InlineData("发布响应式编程教程", "發表回應式程式設計課程")]
+    [InlineData("发布数据库迁移脚本", "發表資料庫遷移指令碼")]
+    [InlineData("发布公告", "發表公告")]
+    [InlineData("发布新版本", "發表新版本")]
+    public void Converter_CnToTw2_DocumentsCurrentPublishReleaseBehavior(string source, string expected)
+    {
+        var converter = OpenCC.Converter("cn", "tw2");
+
+        Assert.Equal(expected, converter(source));
+    }
+
+    [Theory]
+    [InlineData("千钧一发", "千鈞一髮")]
+    [InlineData("一触即发", "一觸即發")]
+    [InlineData("百发百中", "百發百中")]
+    [InlineData("爆发发布", "爆發發表")]
+    public void Converter_CnToTw2_PreservesFaHairIdiomsAndPipelineForms(string source, string expected)
     {
         var converter = OpenCC.Converter("cn", "tw2");
 
