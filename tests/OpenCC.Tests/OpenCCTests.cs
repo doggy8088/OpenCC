@@ -181,9 +181,25 @@ public class OpenCCTests
     [InlineData("数据结构数据库", "資料結構資料庫")]
     [InlineData("响应式编程响应头", "回應式程式設計回應標頭")]
     [InlineData("进程间通信和多线程", "行程間通訊和多執行緒")]
+    [InlineData("文件名和文件系统", "檔名和檔案系統")]
+    [InlineData("文件描述符和函数调用", "檔案描述子和函式呼叫")]
+    [InlineData("渲染管线和内存分配", "算繪管線和記憶體配置")]
+    [InlineData("网络栈和网络适配器", "網路堆疊和網路介面卡")]
     public void Converter_CnToTw2_PrefersLongestTaiwanTechTerms(string source, string expected)
     {
         var converter = OpenCC.Converter("cn", "tw2");
+
+        Assert.Equal(expected, converter(source));
+    }
+
+    [Theory]
+    [InlineData("檔名和檔案系統", "文件名和文件系统")]
+    [InlineData("檔案描述子和函式呼叫", "文件描述符和函数调用")]
+    [InlineData("算繪管線和記憶體配置", "渲染管线和内存分配")]
+    [InlineData("網路堆疊和網路介面卡", "网络栈和网络适配器")]
+    public void Converter_Tw2ToCn_ConvertsTaiwanTechPhrasesBackToSimplified(string source, string expected)
+    {
+        var converter = OpenCC.Converter("tw2", "cn");
 
         Assert.Equal(expected, converter(source));
     }
