@@ -177,6 +177,18 @@ public class OpenCCTests
     }
 
     [Theory]
+    [InlineData("项目", "項目")]
+    [InlineData("項目", "項目")]
+    [InlineData("清单项目", "清單項目")]
+    [InlineData("每个项目", "每個項目")]
+    public void Converter_CnToTw2_PreservesGenericItemTerms(string source, string expected)
+    {
+        var converter = OpenCC.Converter("cn", "tw2");
+
+        Assert.Equal(expected, converter(source));
+    }
+
+    [Theory]
     [InlineData("命令行工具", "命令列工具")]
     [InlineData("数据结构数据库", "資料結構資料庫")]
     [InlineData("响应式编程响应头", "回應式程式設計回應標頭")]
@@ -205,6 +217,20 @@ public class OpenCCTests
     }
 
     [Theory]
+    [InlineData("專案", "专案")]
+    [InlineData("專案設定", "项目设置")]
+    [InlineData("專案目錄", "项目目录")]
+    [InlineData("專案管理", "项目管理")]
+    [InlineData("專案資料夾", "项目文件夹")]
+    [InlineData("專案的", "项目的")]
+    public void Converter_Tw2ToCn_PreservesStandaloneProjectAndConvertsCompounds(string source, string expected)
+    {
+        var converter = OpenCC.Converter("tw2", "cn");
+
+        Assert.Equal(expected, converter(source));
+    }
+
+    [Theory]
     [InlineData("Web 平台库", "Web 平台函式庫")]
     [InlineData("for 循环和while 循环", "for 迴圈和while 迴圈")]
     [InlineData("控制台打印日志", "輸出到 Console記錄")]
@@ -224,6 +250,19 @@ public class OpenCCTests
     [InlineData("类。", "類別。")]
     [InlineData("（视频）", "（影片）")]
     public void Converter_CnToTw2_ConvertsAcrossPunctuationBoundaries(string source, string expected)
+    {
+        var converter = OpenCC.Converter("cn", "tw2");
+
+        Assert.Equal(expected, converter(source));
+    }
+
+    [Theory]
+    [InlineData("项目文件夹", "專案資料夾")]
+    [InlineData("项目的", "專案的")]
+    [InlineData("项目目录", "專案目錄")]
+    [InlineData("项目管理", "專案管理")]
+    [InlineData("项目设置", "專案設定")]
+    public void Converter_CnToTw2_ConvertsProjectContextCompounds(string source, string expected)
     {
         var converter = OpenCC.Converter("cn", "tw2");
 
