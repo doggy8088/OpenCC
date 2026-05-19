@@ -12,7 +12,12 @@ dotnet add package OpenCC
 
 - `src/OpenCC/`：函式庫原始碼
 - `tests/OpenCC.Tests/`：xUnit 單元測試
+- `examples/`：完整使用者範例與逐一說明
 - `OpenCC.sln`：解決方案檔，便於一鍵建置與測試
+
+## 範例
+
+請參考 [`examples/`](examples/)，內含基本轉換、不套用詞彙轉換、不同簡繁詞庫差異、自訂詞典與 HTML/XML 轉換範例。
 
 ## 基本用法
 
