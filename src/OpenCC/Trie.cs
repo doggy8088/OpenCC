@@ -46,9 +46,10 @@ public sealed class Trie
             throw new ArgumentNullException(nameof(dict));
         }
 
-        var lines = dict.Split('|');
-        foreach (var line in lines)
+        var lines = dict.Replace("|", "\n").Split('\n');
+        foreach (var rawLine in lines)
         {
+            var line = rawLine.Trim('\r');
             if (line.Length == 0)
             {
                 continue;

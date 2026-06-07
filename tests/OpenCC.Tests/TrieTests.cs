@@ -90,4 +90,15 @@ public class TrieTests
         Assert.Equal("d", trie.Convert("c"));
         Assert.Equal("x", trie.Convert("x"));
     }
+
+    [Fact]
+    public void LoadDict_String_SupportsNewlineSeparated()
+    {
+        var trie = new Trie();
+        trie.LoadDict("a b\ninvalid\nc d\r\ne f");
+
+        Assert.Equal("b", trie.Convert("a"));
+        Assert.Equal("d", trie.Convert("c"));
+        Assert.Equal("f", trie.Convert("e"));
+    }
 }
