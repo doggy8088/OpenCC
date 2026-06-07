@@ -70,7 +70,6 @@ internal static class DictData
 卧 臥
 叁 叄
 台 臺
-吃 喫
 唇 脣
 啟 啓
 囱 囪
@@ -151,7 +150,6 @@ internal static class DictData
 吃口 喫口
 吃口令 吃口令
 吃口飯 喫口飯
-吃吃 喫喫
 吃子 喫子
 名胄 名胄
 國胄 國胄
@@ -1549,7 +1547,6 @@ internal static class DictData
 叹 嘆
 叽 嘰
 吁 籲
-吃 喫
 后 後
 吓 嚇
 吕 呂
@@ -60413,7 +60410,6 @@ SQL隱碼攻擊 SQL注入
         public const string TWVariantsRev = """
 偽 僞
 參 蔘
-吃 喫
 唇 脣
 啟 啓
 媯 嬀
@@ -60485,7 +60481,6 @@ SQL隱碼攻擊 SQL注入
 吃口 喫口
 吃口令 吃口令
 吃口飯 喫口飯
-吃吃 喫喫
 吃子 喫子
 合著 合著
 吉凶 吉凶
