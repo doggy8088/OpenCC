@@ -351,6 +351,31 @@ public class OpenCCTests
         Assert.Equal(expected, converter(source));
     }
 
+    [Theory]
+    [InlineData("平台", "平台")]          // 裸詞：cn 平台 → tw2 平台，不應變成 平臺
+    [InlineData("跨平台", "跨平台")]      // 常見複合詞
+    [InlineData("软件平台", "軟體平台")]
+    [InlineData("作业平台", "作業平台")]
+    [InlineData("Web 平台库", "Web 平台函式庫")]   // 庫仍正確展開為函式庫
+    [InlineData("全平台库列表", "全平台函式庫列表")]
+    [InlineData("原生平台库", "原生平台函式庫")]
+    public void Converter_CnToTw2_UsesPingTaiNotPingTai(string source, string expected)
+    {
+        var converter = OpenCC.Converter("cn", "tw2");
+
+        Assert.Equal(expected, converter(source));
+    }
+
+    [Theory]
+    [InlineData("跨平台", "跨平台")]      // tw2→cn 逆向：平台 映射回 平台
+    [InlineData("軟體平台", "软件平台")]
+    public void Converter_Tw2ToCn_MapsPingTaiBackToPingTai(string source, string expected)
+    {
+        var converter = OpenCC.Converter("tw2", "cn");
+
+        Assert.Equal(expected, converter(source));
+    }
+
     private static LocalePreset CreatePreset()
     {
         var from = new Dictionary<string, DictGroup>(StringComparer.Ordinal)

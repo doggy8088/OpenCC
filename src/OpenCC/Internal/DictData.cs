@@ -1,4 +1,4 @@
-﻿namespace OpenCC.Internal;
+namespace OpenCC.Internal;
 
 internal static class DictData
 {
@@ -58922,6 +58922,7 @@ while 循環	while 迴圈
 單反相機	單眼相機
 剃鬚刀	刮鬍刀
 屏幕	螢幕
+平臺	平台
 """;
 
         public const string TWPhrasesCustomRev = """
@@ -59329,6 +59330,7 @@ LLM	法學碩士
 單眼相機	單反相機
 刮鬍刀	剃鬚刀
 螢幕	屏幕
+平台	平臺
 """;
 
         public const string TWPhrasesIT = """
