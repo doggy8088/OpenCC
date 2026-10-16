@@ -7,7 +7,7 @@
     <RootNamespace>OpenCC</RootNamespace>
     <AssemblyName>OpenCC</AssemblyName>
     <PackageId>OpenCC</PackageId>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Authors>Will 保哥</Authors>
     <Description>OpenCC (Open Chinese Convert) pure C# port based on opencc-js.</Description>
     <Copyright>Copyright (c) 2026 Will 保哥</Copyright>
