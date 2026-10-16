@@ -42,6 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      id-token: write # NuGet Trusted Publishing（OIDC）
 
     steps:
       - name: Checkout
@@ -117,3 +118,31 @@ jobs:
           tag_name: v${{ steps.version.outputs.version }}
           name: v${{ steps.version.outputs.version }}
           generate_release_notes: true
+
+      # 版本有變更（或手動觸發）時發布到 NuGet Gallery。
+      # 用 Trusted Publishing 換取短期 API key，nuget.org 需先設定信任 doggy8088/OpenCC 的 ci.yml。
+      # --skip-duplicate 讓已發布的版本不會失敗，所以可以用 workflow_dispatch 補發。
+      - name: Setup .NET
+        if: steps.change.outputs.changed == 'true'
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Pack
+        if: steps.change.outputs.changed == 'true'
+        run: dotnet pack src/OpenCC/OpenCC.csproj -c Release -o artifacts
+
+      - name: NuGet login
+        if: steps.change.outputs.changed == 'true'
+        id: nuget-login
+        uses: NuGet/login@v1.2.0
+        with:
+          user: will
+
+      - name: Publish to NuGet
+        if: steps.change.outputs.changed == 'true'
+        run: >-
+          dotnet nuget push "artifacts/*.nupkg"
+          --api-key "${{ steps.nuget-login.outputs.NUGET_API_KEY }}"
+          --source https://api.nuget.org/v3/index.json
+          --skip-duplicate
