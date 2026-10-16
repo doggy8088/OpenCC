@@ -37,14 +37,14 @@ internal static class LocaleData
     internal static readonly DictGroup FromCn = DictGroup.FromStrings(DictData.STCharacters, DictData.STPhrases);
     internal static readonly DictGroup FromHk = DictGroup.FromStrings(DictData.HKVariantsRev, DictData.HKVariantsRevPhrases);
     internal static readonly DictGroup FromTw = DictGroup.FromStrings(DictData.TWVariantsRev, DictData.TWVariantsRevPhrases);
-    internal static readonly DictGroup FromTw2 = DictGroup.FromStrings(DictData.TWVariantsRev, DictData.TWPhrasesCustomRev, TWPhrasesCustomAdditionsRev);
+    internal static readonly DictGroup FromTw2 = DictGroup.FromStrings(DictData.TWVariantsRev, DictData.TWPhrasesCustomRev, TWPhrasesCustomAdditionsRev, DictData.TW2TaiRev);
     internal static readonly DictGroup FromTwp = DictGroup.FromStrings(DictData.TWVariantsRev, DictData.TWVariantsRevPhrases, DictData.TWPhrasesRev);
     internal static readonly DictGroup FromJp = DictGroup.FromStrings(DictData.JPVariantsRev, DictData.JPShinjitaiCharacters, DictData.JPShinjitaiPhrases);
 
     internal static readonly DictGroup ToCn = DictGroup.FromStrings(DictData.TSCharacters, DictData.TSPhrases);
     internal static readonly DictGroup ToHk = DictGroup.FromStrings(DictData.HKVariants);
     internal static readonly DictGroup ToTw = DictGroup.FromStrings(DictData.TWVariants);
-    internal static readonly DictGroup ToTw2 = DictGroup.FromStrings(DictData.TWVariants, DictData.TWPhrasesCustom, TWPhrasesCustomAdditions);
+    internal static readonly DictGroup ToTw2 = DictGroup.FromStrings(DictData.TWVariants, DictData.TWPhrasesCustom, TWPhrasesCustomAdditions, DictData.TW2Tai);
     internal static readonly DictGroup ToTwp = DictGroup.FromStrings(DictData.TWVariants, DictData.TWPhrasesIT, DictData.TWPhrasesName, DictData.TWPhrasesOther);
     internal static readonly DictGroup ToJp = DictGroup.FromStrings(DictData.JPVariants);
 

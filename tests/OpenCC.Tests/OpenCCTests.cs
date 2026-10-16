@@ -376,6 +376,47 @@ public class OpenCCTests
         Assert.Equal(expected, converter(source));
     }
 
+    [Theory]
+    [InlineData("台北", "台北")]                      // 日常用語用「台」
+    [InlineData("台湾", "台灣")]
+    [InlineData("台中", "台中")]
+    [InlineData("台阶", "台階")]
+    [InlineData("电视台", "電視台")]
+    [InlineData("舞台", "舞台")]
+    [InlineData("后台", "後台")]
+    [InlineData("台积电", "台積電")]
+    [InlineData("台风", "颱風")]                      // 「颱」「檯」不受影響
+    [InlineData("柜台", "櫃檯")]
+    [InlineData("吧台", "吧檯")]
+    [InlineData("台灯", "檯燈")]
+    [InlineData("国立台湾大学", "國立臺灣大學")]      // 正式名稱保留「臺」
+    [InlineData("台北市政府", "臺北市政府")]
+    [InlineData("新台币", "新臺幣")]
+    [InlineData("台湾银行", "臺灣銀行")]
+    [InlineData("台湾台北地方法院", "臺灣臺北地方法院")]
+    [InlineData("我在台北市政府上班", "我在臺北市政府上班")]
+    public void Converter_CnToTw2_UsesTaiExceptOfficialNames(string source, string expected)
+    {
+        var converter = OpenCC.Converter("cn", "tw2");
+
+        Assert.Equal(expected, converter(source));
+    }
+
+    [Theory]
+    [InlineData("tw", "tw2", "臺北", "台北")]
+    [InlineData("tw", "tw2", "國立臺灣大學", "國立臺灣大學")]
+    [InlineData("tw2", "tw2", "台北市政府", "臺北市政府")]       // 寫成「台」的正式名稱統一成「臺」
+    [InlineData("tw2", "tw2", "新台幣", "新臺幣")]
+    [InlineData("tw2", "tw2", "台灣臺北地方法院", "臺灣臺北地方法院")]
+    [InlineData("tw2", "cn", "國立臺灣大學", "国立台湾大学")]
+    [InlineData("tw2", "cn", "台北", "台北")]
+    public void Converter_Tw2_NormalizesTaiInOfficialNames(string from, string to, string source, string expected)
+    {
+        var converter = OpenCC.Converter(from, to);
+
+        Assert.Equal(expected, converter(source));
+    }
+
     private static LocalePreset CreatePreset()
     {
         var from = new Dictionary<string, DictGroup>(StringComparer.Ordinal)
