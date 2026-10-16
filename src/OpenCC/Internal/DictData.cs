@@ -2,7 +2,7 @@ namespace OpenCC.Internal;
 
 internal static class DictData
 {
-        public const string HKVariants = """
+    public const string HKVariants = """
 僞 偽
 兌 兑
 叄 叁
@@ -64,7 +64,7 @@ internal static class DictData
 閱 閲
 鰮 鰛
 """;
-        public const string HKVariantsRev = """
+    public const string HKVariantsRev = """
 偽 僞
 兑 兌
 卧 臥
@@ -126,7 +126,7 @@ internal static class DictData
 閲 閱
 鰛 鰮
 """;
-        public const string HKVariantsRevPhrases = """
+    public const string HKVariantsRevPhrases = """
 一口吃個 一口喫個
 一口吃成 一口喫成
 一家三口 一家三口
@@ -283,7 +283,7 @@ internal static class DictData
 龍巖村 龍巖村
 龍胄 龍胄
 """;
-        public const string JPShinjitaiCharacters = """
+    public const string JPShinjitaiCharacters = """
 両 兩
 弁 辨
 欠 缺
@@ -291,7 +291,7 @@ internal static class DictData
 芸 藝
 浜 濱
 """;
-        public const string JPShinjitaiPhrases = """
+    public const string JPShinjitaiPhrases = """
 一獲千金 一攫千金
 丁寧 叮嚀
 丁重 鄭重
@@ -469,7 +469,7 @@ internal static class DictData
 高進 亢進
 鳥観 鳥瞰
 """;
-        public const string JPVariants = """
+    public const string JPVariants = """
 乘 乗
 亂 乱
 亙 亘
@@ -838,7 +838,7 @@ internal static class DictData
 龍 竜
 龜 亀
 """;
-        public const string JPVariantsRev = """
+    public const string JPVariantsRev = """
 万 萬
 与 與
 両 兩
@@ -1197,7 +1197,7 @@ internal static class DictData
 鼈 鱉
 齢 齡
 """;
-        public const string STCharacters = """
+    public const string STCharacters = """
 㐷 傌
 㐹 㑶
 㐽 偑
@@ -5081,7 +5081,7 @@ internal static class DictData
 𰾭 鑀
 𱊜 𪈼
 """;
-        public const string STPhrases = """
+    public const string STPhrases = """
 㓦划 㓦劃
 一丝不挂 一絲不掛
 一了心愿 一了心願
@@ -54132,7 +54132,7 @@ internal static class DictData
 龟卜 龜卜
 龟鉴 龜鑑
 """;
-        public const string TSCharacters = """
+    public const string TSCharacters = """
 㑮 𫝈
 㑯 㑔
 㑳 㑇
@@ -58239,7 +58239,7 @@ internal static class DictData
 𫒡 𫓷
 𫜦 𫜫
 """;
-        public const string TSPhrases = """
+    public const string TSPhrases = """
 一目瞭然 一目了然
 上鍊 上链
 不瞭解 不了解
@@ -58517,7 +58517,7 @@ internal static class DictData
 黄鍾公 黄锺公
 龍鍾 龙钟
 """;
-        public const string TWPhrasesCustom = """
+    public const string TWPhrasesCustom = """
 一觸即髮	一觸即發
 千鈞一髮	千鈞一髮
 蓄勢待髮	蓄勢待發
@@ -58925,7 +58925,7 @@ while 循環	while 迴圈
 平臺	平台
 """;
 
-        public const string TWPhrasesCustomRev = """
+    public const string TWPhrasesCustomRev = """
 一觸即發	一觸即髮
 千鈞一髮	千鈞一髮
 蓄勢待發	蓄勢待髮
@@ -59333,7 +59333,7 @@ LLM	法學碩士
 平台	平臺
 """;
 
-        public const string TWPhrasesIT = """
+    public const string TWPhrasesIT = """
 PN結 PN接面
 SQL注入 SQL隱碼攻擊
 SQL注入攻擊 SQL隱碼攻擊
@@ -59722,7 +59722,7 @@ U盤 隨身碟
 鼠標 滑鼠
 """;
 
-        public const string TWPhrasesName = """
+    public const string TWPhrasesName = """
 乍得 查德
 也門 葉門
 仙童半導體 快捷半導體
@@ -59809,7 +59809,7 @@ U盤 隨身碟
 馬里共和國 馬利共和國
 """;
 
-        public const string TWPhrasesOther = """
+    public const string TWPhrasesOther = """
 元音 母音
 冰棍 冰棒
 出租車 計程車
@@ -59849,7 +59849,7 @@ U盤 隨身碟
 借記卡 簽帳金融卡
 """;
 
-        public const string TWPhrasesRev = """
+    public const string TWPhrasesRev = """
 PN接面 PN結
 SQL隱碼攻擊 SQL注入
 三極體 三極管
@@ -60368,7 +60368,7 @@ SQL隱碼攻擊 SQL注入
 點陣圖 位圖
 """;
 
-        public const string TWVariants = """
+    public const string TWVariants = """
 僞 偽
 啓 啟
 喫 吃
@@ -60409,7 +60409,7 @@ SQL隱碼攻擊 SQL注入
 麪 麵
 齶 顎
 """;
-        public const string TWVariantsRev = """
+    public const string TWVariantsRev = """
 偽 僞
 參 蔘
 唇 脣
@@ -60445,7 +60445,7 @@ SQL隱碼攻擊 SQL注入
 鯰 鮎
 麵 麪
 """;
-        public const string TWVariantsRevPhrases = """
+    public const string TWVariantsRevPhrases = """
 一口吃個 一口喫個
 一口吃成 一口喫成
 一家三口 一家三口
@@ -60515,7 +60515,7 @@ SQL隱碼攻擊 SQL注入
 顯著 顯著
 """;
 
-        public const string TW2Tai = """
+    public const string TW2Tai = """
 臺	台
 新臺幣	新臺幣
 新台幣	新臺幣
@@ -60667,7 +60667,7 @@ SQL隱碼攻擊 SQL注入
 台北市立美術館	臺北市立美術館
 """;
 
-        public const string TW2TaiRev = """
+    public const string TW2TaiRev = """
 新臺幣	新臺幣
 新台幣	新臺幣
 臺灣地區與大陸地區人民關係條例	臺灣地區與大陸地區人民關係條例
