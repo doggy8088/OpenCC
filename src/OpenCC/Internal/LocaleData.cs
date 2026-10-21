@@ -44,8 +44,8 @@ internal static class LocaleData
     internal static readonly DictGroup ToCn = DictGroup.FromStrings(DictData.TSCharacters, DictData.TSPhrases);
     internal static readonly DictGroup ToHk = DictGroup.FromStrings(DictData.HKVariants);
     internal static readonly DictGroup ToTw = DictGroup.FromStrings(DictData.TWVariants);
-    internal static readonly DictGroup ToTw2 = DictGroup.FromStrings(DictData.TWVariants, DictData.TWPhrasesCustom, TWPhrasesCustomAdditions, DictData.TW2Tai);
-    internal static readonly DictGroup ToTwp = DictGroup.FromStrings(DictData.TWVariants, DictData.TWPhrasesIT, DictData.TWPhrasesName, DictData.TWPhrasesOther);
+    internal static readonly DictGroup ToTw2 = DictGroup.FromStrings(DictData.TWVariants, DictData.TWPhrasesCustom, TWPhrasesCustomAdditions, DictData.TW2Tai, TaiwanQuality.TW2);
+    internal static readonly DictGroup ToTwp = DictGroup.FromStrings(DictData.TWVariants, DictData.TWPhrasesIT, DictData.TWPhrasesName, DictData.TWPhrasesOther, TaiwanQuality.TWP);
     internal static readonly DictGroup ToJp = DictGroup.FromStrings(DictData.JPVariants);
 
     internal static readonly IReadOnlyDictionary<string, DictGroup> FromMap =

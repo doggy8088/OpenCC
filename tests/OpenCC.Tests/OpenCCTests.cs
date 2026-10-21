@@ -155,7 +155,7 @@ public class OpenCCTests
     [InlineData("保存更改", "儲存變更")]
     [InlineData("网络", "網路")]
     [InlineData("信息", "資訊")]
-    [InlineData("质量", "品質")]
+    [InlineData("质量", "質量")]
     [InlineData("用户", "使用者")]
     [InlineData("默认", "預設")]
     [InlineData("创建", "建立")]
@@ -258,9 +258,9 @@ public class OpenCCTests
 
     [Theory]
     [InlineData("项目文件夹", "專案資料夾")]
-    [InlineData("项目的", "專案的")]
+    [InlineData("项目的", "項目的")]
     [InlineData("项目目录", "專案目錄")]
-    [InlineData("项目管理", "專案管理")]
+    [InlineData("项目管理", "項目管理")]
     [InlineData("项目设置", "專案設定")]
     public void Converter_CnToTw2_ConvertsProjectContextCompounds(string source, string expected)
     {
@@ -323,7 +323,7 @@ public class OpenCCTests
     [InlineData("在 while 循环中调用函数。", "在 while 迴圈中呼叫函式。")]
     [InlineData("for 循环处理数组和字符串。", "for 迴圈處理陣列和字串。")]
     [InlineData("配置文件位于项目目录。", "組態檔位於專案目錄。")]
-    [InlineData("命令行工具输出调试信息。", "命令列工具輸出偵錯資訊。")]
+    [InlineData("命令行工具输出调试信息。", "命令列工具輸出除錯資訊。")]
     [InlineData("代码审查发现内存泄漏。", "程式碼審查發現記憶體洩漏。")]
     public void Converter_CnToTw2_ConvertsSentenceLevelTaiwanTechTerms(string source, string expected)
     {
