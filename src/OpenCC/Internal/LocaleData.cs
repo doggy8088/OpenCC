@@ -34,7 +34,7 @@ internal static class LocaleData
 網路介面卡	網絡適配器
 ";
 
-    internal static readonly DictGroup FromCn = DictGroup.FromStrings(DictData.STCharacters, DictData.STPhrases);
+    internal static readonly DictGroup FromCn = DictGroup.FromStrings(DictData.STCharacters, DictData.STPhrases, TaiwanQuality.CN);
     internal static readonly DictGroup FromHk = DictGroup.FromStrings(DictData.HKVariantsRev, DictData.HKVariantsRevPhrases);
     internal static readonly DictGroup FromTw = DictGroup.FromStrings(DictData.TWVariantsRev, DictData.TWVariantsRevPhrases);
     internal static readonly DictGroup FromTw2 = DictGroup.FromStrings(DictData.TWVariantsRev, DictData.TWPhrasesCustomRev, TWPhrasesCustomAdditionsRev, DictData.TW2TaiRev);
