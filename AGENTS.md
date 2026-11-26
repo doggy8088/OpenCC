@@ -7,7 +7,7 @@
 - `bin/` and `obj/` are build outputs; do not commit changes there.
 
 ## Build, Test, and Development Commands
-- `dotnet build src/OpenCC/OpenCC.csproj` — builds the library (net8.0).
+- `dotnet build src/OpenCC/OpenCC.csproj` — builds the library (netstandard2.0).
 - `dotnet test tests/OpenCC.Tests/OpenCC.Tests.csproj` — runs the full test suite.
 - `dotnet pack src/OpenCC/OpenCC.csproj -c Release` — produces the NuGet package (also generated on build).
 

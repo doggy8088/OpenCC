@@ -24,9 +24,10 @@ public sealed class Trie
         }
 
         var node = _root;
-        foreach (var rune in source.EnumerateRunes())
+        for (var i = 0; i < source.Length;)
         {
-            var codePoint = rune.Value;
+            var codePoint = GetCodePointAt(source, i, out var step);
+            i += step;
             if (!node.Children.TryGetValue(codePoint, out var next))
             {
                 next = new Node();
@@ -66,7 +67,7 @@ public sealed class Trie
                 continue;
             }
 
-            AddWord(line[..separatorIndex], line[(separatorIndex + 1)..]);
+            AddWord(line.Substring(0, separatorIndex), line.Substring(separatorIndex + 1));
         }
     }
 
