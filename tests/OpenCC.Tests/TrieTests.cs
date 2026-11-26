@@ -101,4 +101,53 @@ public class TrieTests
         Assert.Equal("d", trie.Convert("c"));
         Assert.Equal("f", trie.Convert("e"));
     }
+
+    [Fact]
+    public void Convert_SurrogatePairKeys_UsesLongestMatch()
+    {
+        var trie = new Trie();
+        trie.AddWord("\U00020BB7", "X");
+        trie.AddWord("\U00020BB7\U00020BB7", "Y");
+
+        Assert.Equal("X", trie.Convert("\U00020BB7"));
+        Assert.Equal("Y", trie.Convert("\U00020BB7\U00020BB7"));
+        Assert.Equal("\uD842", trie.Convert("\uD842"));
+    }
+
+    [Fact]
+    public void Convert_LoneHighSurrogateKey_Matches()
+    {
+        var trie = new Trie();
+        trie.AddWord("\uD800", "H");
+
+        Assert.Equal("aHb", trie.Convert("a\uD800b"));
+    }
+
+    [Fact]
+    public void Convert_LoneLowSurrogateKey_Matches()
+    {
+        var trie = new Trie();
+        trie.AddWord("\uDC00", "L");
+
+        Assert.Equal("aLb", trie.Convert("a\uDC00b"));
+    }
+
+    [Fact]
+    public void Convert_LoneSurrogatesNotInDictionary_PreservedVerbatim()
+    {
+        var trie = new Trie();
+
+        Assert.Equal("x\uD800y", trie.Convert("x\uD800y"));
+        Assert.Equal("x\uDC00y", trie.Convert("x\uDC00y"));
+    }
+
+    [Fact]
+    public void Convert_LoneSurrogate_DoesNotMatchReplacementCharacterKey()
+    {
+        var trie = new Trie();
+        trie.AddWord("\uFFFD", "R");
+
+        Assert.Equal("\uD800", trie.Convert("\uD800"));
+        Assert.Equal("R", trie.Convert("\uFFFD"));
+    }
 }
