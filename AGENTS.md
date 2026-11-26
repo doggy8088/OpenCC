@@ -30,3 +30,11 @@
 
 ## Buildability Requirement
 - Every edit must keep the repository buildable. When making changes, ensure `dotnet build OpenCC.sln` succeeds (or the equivalent project build if the solution is unavailable).
+
+
+## 本機與 CI 驗證分工
+
+- 啟用本機 pre-commit hook（每個 clone 設定一次）：`git config core.hooksPath .githooks`
+- 分工原則：本機負責 format 與快速回歸；CI 負責完整測試矩陣與「乾淨環境」驗證。hook 只放快檢查，慢測試一律交給 CI，避免被 `--no-verify` 繞過。
+- 本機 hook：`dotnet format --verify-no-changes`（2026-11-26 PR #3 的 FINALNEWLINE 就是被 CI 的同一條檢查擋下，本機先跑可省一輪來回）。
+- CI：format verify＋build＋test 為準；`dotnet test` 在部分本機環境（VM testhost）可能逾時，跑不完時以 CI 結果為準，不要當成漏驗。
