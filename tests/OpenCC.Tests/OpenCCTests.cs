@@ -161,7 +161,7 @@ public class OpenCCTests
     [InlineData("创建", "建立")]
     [InlineData("实现", "實作")]
     [InlineData("运行", "執行")]
-    [InlineData("发布", "發表")]
+    [InlineData("发布", "發布")]
     [InlineData("屏幕", "螢幕")]
     [InlineData("界面", "介面")]
     [InlineData("文档", "文件")]
@@ -270,11 +270,11 @@ public class OpenCCTests
     }
 
     [Theory]
-    [InlineData("软件发布", "軟體發表")]
-    [InlineData("发布响应式编程教程", "發表回應式程式設計課程")]
-    [InlineData("发布数据库迁移脚本", "發表資料庫遷移指令碼")]
-    [InlineData("发布公告", "發表公告")]
-    [InlineData("发布新版本", "發表新版本")]
+    [InlineData("软件发布", "軟體發布")]
+    [InlineData("发布响应式编程教程", "發布回應式程式設計課程")]
+    [InlineData("发布数据库迁移脚本", "發布資料庫遷移指令碼")]
+    [InlineData("发布公告", "發布公告")]
+    [InlineData("发布新版本", "發布新版本")]
     public void Converter_CnToTw2_DocumentsCurrentPublishReleaseBehavior(string source, string expected)
     {
         var converter = OpenCC.Converter("cn", "tw2");
@@ -286,7 +286,7 @@ public class OpenCCTests
     [InlineData("千钧一发", "千鈞一髮")]
     [InlineData("一触即发", "一觸即發")]
     [InlineData("百发百中", "百發百中")]
-    [InlineData("爆发发布", "爆發發表")]
+    [InlineData("爆发发布", "爆發發布")]
     public void Converter_CnToTw2_PreservesFaHairIdiomsAndPipelineForms(string source, string expected)
     {
         var converter = OpenCC.Converter("cn", "tw2");
@@ -315,7 +315,7 @@ public class OpenCCTests
     [InlineData("命令行工具加载配置文件。", "命令列工具載入組態檔。")]
     [InlineData("创建软件项目目录和项目设置。", "建立軟體專案目錄和專案設定。")]
     [InlineData("调试器显示调用堆栈和断点。", "偵錯工具顯示呼叫堆疊和中斷點。")]
-    [InlineData("程序员重构代码库并发布版本。", "程式設計師重構程式碼庫並發表版本。")]
+    [InlineData("程序员重构代码库并发布版本。", "程式設計師重構程式碼庫並發布版本。")]
     [InlineData("响应式编程教程包含缓存策略。", "回應式程式設計課程包含快取策略。")]
     [InlineData("我们的程序使用数据库和线程。", "我們的應用程式使用資料庫和執行緒。")]
     [InlineData("请打开用户界面并刷新屏幕。", "請打開使用者介面並重新整理螢幕。")]
