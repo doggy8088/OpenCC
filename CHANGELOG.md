@@ -2,7 +2,7 @@
 
 ## 0.1.5
 
-詞彙修復批次：修正三個根因型誤轉、補齊一對多字的恆等保護，並擴充台灣用詞規則（VOCAB-BACKLOG V1、V2、V4–V7、V9、V10、V12）。共用驗收語料（taiwan-quality.tsv）案例由 58 條擴充至 196 條，涵蓋正例、反例與繁體直入（冪等）案例。
+詞彙修復批次：修正三個根因型誤轉、補齊一對多字的恆等保護，並擴充台灣用詞規則（VOCAB-BACKLOG V1、V2、V4–V7、V9、V10、V12）。其來源案例集 quality/cases.tsv 由 58 條擴充至 200 條，產出的共用驗收語料 taiwan-quality.tsv 本版共 381 條案例，涵蓋正例、反例與繁體直入（冪等）案例。
 
 根因修正：
 
@@ -17,7 +17,7 @@
 C# 專案變更：
 
 - 將 OpenCC 版本提升為 0.1.5。
-- `DictData.cs` 的 `TWPhrasesCustom` 與 TaiwanQuality 資料為產生器同步產出，與其他 port 使用相同規則與驗收語料（6 份 taiwan-quality.tsv MD5 一致）。
+- `DictData.cs` 的 `TWPhrasesCustom` 為本 repo 直接維護的自訂詞條（B 層權威來源），修正後跨 port 同步；TaiwanQuality 資料則由產生器自 taiwan-rules.json 產出。兩者與其他 port 使用相同規則與驗收語料（6 份 taiwan-quality.tsv MD5 一致）。
 
 ## 0.1.4
 
