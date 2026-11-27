@@ -1,0 +1,6 @@
+#!/bin/sh
+# 本機 pre-commit hook（啟用方式見 repo 文件的「本機與 CI 驗證分工」）。
+# 背景：2026-11-26 PR #3 被 CI 的 dotnet format FINALNEWLINE 擋下；同樣檢查可在 commit 前先跑。
+set -e
+echo "[pre-commit] dotnet format --verify-no-changes"
+dotnet format --verify-no-changes OpenCC.sln
