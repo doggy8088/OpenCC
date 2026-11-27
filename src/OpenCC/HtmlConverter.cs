@@ -177,7 +177,7 @@ public sealed class HtmlConverter
     private static bool HasIgnoreClass(XElement element)
     {
         var classAttr = (string?)element.Attribute("class");
-        if (string.IsNullOrWhiteSpace(classAttr))
+        if (classAttr is null || string.IsNullOrWhiteSpace(classAttr))
         {
             return false;
         }
