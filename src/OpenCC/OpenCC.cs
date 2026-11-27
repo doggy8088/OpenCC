@@ -156,7 +156,7 @@ public static class OpenCC
         IReadOnlyDictionary<string, DictGroup> map,
         IList<DictGroup> dictGroups)
     {
-        if (string.IsNullOrWhiteSpace(locale))
+        if (locale is null || string.IsNullOrWhiteSpace(locale))
         {
             throw new ArgumentException($"Please provide the `{type}` option", nameof(locale));
         }

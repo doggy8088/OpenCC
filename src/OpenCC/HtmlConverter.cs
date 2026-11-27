@@ -35,24 +35,24 @@ public sealed class HtmlConverter
             element.SetAttributeValue("lang", _fromLangTag);
         }
 
-        foreach (var (node, original) in _originalText)
+        foreach (var pair in _originalText)
         {
-            node.Value = original;
+            pair.Key.Value = pair.Value;
         }
 
-        foreach (var (element, original) in _originalMetaContent)
+        foreach (var pair in _originalMetaContent)
         {
-            element.SetAttributeValue("content", original);
+            pair.Key.SetAttributeValue("content", pair.Value);
         }
 
-        foreach (var (element, original) in _originalImgAlt)
+        foreach (var pair in _originalImgAlt)
         {
-            element.SetAttributeValue("alt", original);
+            pair.Key.SetAttributeValue("alt", pair.Value);
         }
 
-        foreach (var (element, original) in _originalInputValue)
+        foreach (var pair in _originalInputValue)
         {
-            element.SetAttributeValue("value", original);
+            pair.Key.SetAttributeValue("value", pair.Value);
         }
     }
 
@@ -177,7 +177,7 @@ public sealed class HtmlConverter
     private static bool HasIgnoreClass(XElement element)
     {
         var classAttr = (string?)element.Attribute("class");
-        if (string.IsNullOrWhiteSpace(classAttr))
+        if (classAttr is null || string.IsNullOrWhiteSpace(classAttr))
         {
             return false;
         }
